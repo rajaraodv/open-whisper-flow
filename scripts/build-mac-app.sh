@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APP_DIR="$ROOT_DIR/dist/Local Flow.app"
+APP_DIR="$ROOT_DIR/dist/ParaFlow.app"
 CONTENTS_DIR="$APP_DIR/Contents"
 MACOS_DIR="$CONTENTS_DIR/MacOS"
 RESOURCES_DIR="$CONTENTS_DIR/Resources"
@@ -19,7 +19,7 @@ fi
 swiftc "$ROOT_DIR/macos/LocalFlowApp.swift" \
   -framework Cocoa \
   -framework AVFoundation \
-  -o "$MACOS_DIR/Local Flow"
+  -o "$MACOS_DIR/ParaFlow"
 
 cp "$ICON_PATH" "$RESOURCES_DIR/LocalFlow.icns"
 cp "$ROOT_DIR/assets/deep-tuck.wav" "$RESOURCES_DIR/deep-tuck.wav"
@@ -31,9 +31,9 @@ cat > "$CONTENTS_DIR/Info.plist" <<PLIST
 <plist version="1.0">
 <dict>
   <key>CFBundleName</key>
-  <string>Local Flow</string>
+  <string>ParaFlow</string>
   <key>CFBundleDisplayName</key>
-  <string>Local Flow</string>
+  <string>ParaFlow</string>
   <key>CFBundleIdentifier</key>
   <string>local.flow.prototype</string>
   <key>CFBundleVersion</key>
@@ -41,7 +41,7 @@ cat > "$CONTENTS_DIR/Info.plist" <<PLIST
   <key>CFBundleShortVersionString</key>
   <string>0.1.0</string>
   <key>CFBundleExecutable</key>
-  <string>Local Flow</string>
+  <string>ParaFlow</string>
   <key>CFBundleIconFile</key>
   <string>LocalFlow</string>
   <key>CFBundlePackageType</key>
@@ -49,9 +49,9 @@ cat > "$CONTENTS_DIR/Info.plist" <<PLIST
   <key>LSMinimumSystemVersion</key>
   <string>13.0</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>Local Flow records your voice for local transcription.</string>
+  <string>ParaFlow records your voice for local transcription.</string>
   <key>NSAppleEventsUsageDescription</key>
-  <string>Local Flow uses System Events to paste transcribed text into the focused field.</string>
+  <string>ParaFlow uses System Events to paste transcribed text into the focused field.</string>
 </dict>
 </plist>
 PLIST
@@ -59,4 +59,4 @@ PLIST
 codesign --force --deep --sign - "$APP_DIR"
 
 echo "Built $APP_DIR"
-echo "Logs: \$HOME/Library/Logs/Local Flow.log"
+echo "Logs: \$HOME/Library/Logs/ParaFlow.log"

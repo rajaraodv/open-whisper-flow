@@ -60,7 +60,7 @@ class DictationApp:
             threading.Thread(target=self.finish, args=(samples,), daemon=True).start()
         else:
             print("Recording. Press the hotkey again to stop.", flush=True)
-            notify("Local Flow", "Recording")
+            notify("ParaFlow", "Recording")
             self.recorder.start()
 
     def finish(self, samples) -> None:
@@ -68,14 +68,14 @@ class DictationApp:
         try:
             if samples.size < self.recorder.sample_rate // 3:
                 print("Recording too short; skipped.", flush=True)
-                notify("Local Flow", "Recording was too short")
+                notify("ParaFlow", "Recording was too short")
                 return
 
             print("Transcribing locally with Parakeet...", flush=True)
             text = clean_transcript(self.transcriber.transcribe(samples, self.recorder.sample_rate))
             if not text:
                 print("No speech detected.", flush=True)
-                notify("Local Flow", "No speech detected")
+                notify("ParaFlow", "No speech detected")
                 return
 
             if os.environ.get("LOCAL_FLOW_NATIVE_PASTE") == "1":
@@ -100,7 +100,7 @@ class DictationApp:
                 paste_clipboard()
                 print(f"Pasted: {text}", flush=True)
             else:
-                notify("Local Flow", "Copied to clipboard. Paste it wherever you want.")
+                notify("ParaFlow", "Copied to clipboard. Paste it wherever you want.")
                 print(f"Copied to clipboard: {text}", flush=True)
         finally:
             self.busy = False
@@ -142,7 +142,7 @@ class DictationApp:
 
 
 def main() -> None:
-    lock_path = Path.home() / "Library" / "Application Support" / "Local Flow" / "Local Flow.lock"
+    lock_path = Path.home() / "Library" / "Application Support" / "ParaFlow" / "ParaFlow.lock"
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     lock_file = lock_path.open("w")
     try:
@@ -150,7 +150,7 @@ def main() -> None:
         lock_file.write(str(os.getpid()))
         lock_file.flush()
     except BlockingIOError:
-        notify("Local Flow", "Already running")
+        notify("ParaFlow", "Already running")
         return
 
     parser = argparse.ArgumentParser()

@@ -238,7 +238,7 @@ final class OnboardingHeroView: NSView {
             .font: NSFont.systemFont(ofSize: 28, weight: .bold),
             .foregroundColor: NSColor.white
         ]
-        "Local Flow".draw(at: NSPoint(x: 28, y: bounds.height - 58), withAttributes: titleAttributes)
+        "ParaFlow".draw(at: NSPoint(x: 28, y: bounds.height - 58), withAttributes: titleAttributes)
 
         let subtitleAttributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 14, weight: .medium),
@@ -380,7 +380,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let resourcesURL = Bundle.main.resourceURL!
     private let onboardingCompletedKey = "LocalFlowOnboardingCompleted"
     private let logURL = FileManager.default.homeDirectoryForCurrentUser
-        .appendingPathComponent("Library/Logs/Local Flow.log")
+        .appendingPathComponent("Library/Logs/ParaFlow.log")
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         openLogFile()
@@ -391,7 +391,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         toggleButton.isEnabled = true
         startTranscriberWorker()
         registerHotKey()
-        appendLog("Local Flow launched from \(rootDir)\n")
+        appendLog("ParaFlow launched from \(rootDir)\n")
         startAccessibilityMonitor()
         if !UserDefaults.standard.bool(forKey: onboardingCompletedKey) {
             showOnboarding()
@@ -414,7 +414,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             defer: false
         )
         window.center()
-        window.title = "Local Flow"
+        window.title = "ParaFlow"
 
         let root = NSStackView()
         root.orientation = .vertical
@@ -424,7 +424,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         root.translatesAutoresizingMaskIntoConstraints = false
         window.contentView = root
 
-        let title = NSTextField(labelWithString: "Local Flow")
+        let title = NSTextField(labelWithString: "ParaFlow")
         title.font = .systemFont(ofSize: 24, weight: .semibold)
 
         let subtitle = NSTextField(labelWithString: "Local Parakeet dictation. Hold Ctrl+Option+Space to dictate.")
@@ -499,7 +499,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered,
             defer: false
         )
-        panel.title = "Set Up Local Flow"
+        panel.title = "Set Up ParaFlow"
         panel.center()
         onboardingWindow = panel
 
@@ -573,28 +573,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         switch onboardingStep {
         case 0:
             addOnboardingText(
-                title: "Set up Local Flow.app",
-                body: "This setup will prepare Local Flow.app to record your voice, listen for its global trigger, and paste text into the app you are using."
+                title: "Set up ParaFlow.app",
+                body: "This setup will prepare ParaFlow.app to record your voice, listen for its global trigger, and paste text into the app you are using."
             )
             addSetupCard(
                 title: "How it works",
-                body: "Hold Ctrl + Option + Space, speak, then release. Local Flow transcribes locally with Parakeet and pastes the text into the active text field.",
+                body: "Hold Ctrl + Option + Space, speak, then release. ParaFlow transcribes locally with Parakeet and pastes the text into the active text field.",
                 accent: .systemBlue
             )
             addSetupCard(
                 title: "App name to look for",
-                body: "In macOS permission screens, enable the item named Local Flow. If Finder shows the full filename, it may appear as Local Flow.app.",
+                body: "In macOS permission screens, enable the item named ParaFlow. If Finder shows the full filename, it may appear as ParaFlow.app.",
                 accent: .systemGreen
             )
         case 1:
             addOnboardingText(
                 title: "Enable required permissions",
-                body: "Local Flow needs exactly two macOS permissions. Both must show Ready before paste and dictation can work reliably."
+                body: "ParaFlow needs exactly two macOS permissions. Both must show Ready before paste and dictation can work reliably."
             )
             micStatusLabel = permissionCard(
                 title: "1. Microphone",
                 path: "System Settings > Privacy & Security > Microphone",
-                body: "Enable Local Flow or Local Flow.app so the app can record your voice.",
+                body: "Enable ParaFlow or ParaFlow.app so the app can record your voice.",
                 buttonTitle: "Allow Microphone",
                 action: #selector(requestMicrophoneFromOnboarding(_:)),
                 accent: .systemTeal
@@ -602,7 +602,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             accessibilityStatusLabel = permissionCard(
                 title: "2. Accessibility",
                 path: "System Settings > Privacy & Security > Accessibility",
-                body: "Enable Local Flow or Local Flow.app so it can paste the transcript with Cmd+V.",
+                body: "Enable ParaFlow or ParaFlow.app so it can paste the transcript with Cmd+V.",
                 buttonTitle: "Open Settings",
                 action: #selector(openAccessibilitySettings(_:)),
                 accent: .systemBlue
@@ -612,7 +612,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         case 2:
             addOnboardingText(
                 title: "Test the trigger",
-                body: "This confirms the global hotkey is registered and that Local Flow can hear the key press while another app is active."
+                body: "This confirms the global hotkey is registered and that ParaFlow can hear the key press while another app is active."
             )
             addSetupCard(
                 title: "Current trigger",
@@ -633,7 +633,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         default:
             addOnboardingText(
                 title: "Ready to dictate",
-                body: "Local Flow.app can now run in the background. Keep it open, then use the trigger anywhere you can type."
+                body: "ParaFlow.app can now run in the background. Keep it open, then use the trigger anywhere you can type."
             )
             addSetupCard(
                 title: "Daily use",
@@ -642,7 +642,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             )
             addSetupCard(
                 title: "If paste stops working",
-                body: "Go back to System Settings > Privacy & Security > Accessibility and make sure Local Flow.app is still enabled.",
+                body: "Go back to System Settings > Privacy & Security > Accessibility and make sure ParaFlow.app is still enabled.",
                 accent: .systemBlue
             )
         }

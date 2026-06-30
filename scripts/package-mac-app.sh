@@ -2,14 +2,14 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APP_DIR="$ROOT_DIR/dist/Local Flow.app"
+APP_DIR="$ROOT_DIR/dist/ParaFlow.app"
 RESOURCES_DIR="$APP_DIR/Contents/Resources"
 BACKEND_DIR="$RESOURCES_DIR/backend"
 MODEL_SRC="$ROOT_DIR/models/parakeet"
 MODEL_DST="$RESOURCES_DIR/models/parakeet"
 PYTHON="$ROOT_DIR/.venv/bin/python"
 VERSION="0.1.0"
-DMG_PATH="$ROOT_DIR/dist/Local-Flow-$VERSION.dmg"
+DMG_PATH="$ROOT_DIR/dist/ParaFlow-$VERSION.dmg"
 DMG_STAGE="$ROOT_DIR/.build/dmg-stage"
 CODESIGN_IDENTITY="${CODESIGN_IDENTITY:-}"
 NOTARY_KEYCHAIN_PROFILE="${NOTARY_KEYCHAIN_PROFILE:-}"
@@ -61,7 +61,7 @@ ln -s /Applications "$DMG_STAGE/Applications"
 
 rm -f "$DMG_PATH"
 hdiutil create \
-  -volname "Local Flow" \
+  -volname "ParaFlow" \
   -srcfolder "$DMG_STAGE" \
   -ov \
   -format UDZO \

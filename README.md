@@ -1,8 +1,10 @@
-# Open Whisper Flow
+# ParaFlow
 
-A small macOS push-to-talk dictation app — an open, fully local take on Wispr Flow. It transcribes your speech on-device with NVIDIA's Parakeet ASR model through `sherpa-onnx`; nothing is sent to the cloud.
+An open, fully local Wispr Flow alternative, powered by NVIDIA Parakeet.
 
-> The built macOS app is named **Local Flow**, and the Python package is `flow_clone` — these are the internal/product names used throughout the code.
+ParaFlow is a small macOS push-to-talk dictation app that transcribes your speech on-device through `sherpa-onnx` — nothing is sent to the cloud.
+
+> Internally, the Python package is named `flow_clone` and the app's bundle id is `local.flow.prototype`. These identifiers are kept stable across the rename so existing builds and permission grants keep working.
 
 ## What Works
 
@@ -52,17 +54,17 @@ You can choose a different hotkey:
 open dist
 ```
 
-Then double-click `Local Flow.app`.
+Then double-click `ParaFlow.app`.
 
 This opens a small native macOS window and starts the local dictation backend.
 
 The app runs in the background and logs to:
 
 ```text
-~/Library/Logs/Local Flow.log
+~/Library/Logs/ParaFlow.log
 ```
 
-Because this prototype uses global hotkeys and paste automation, macOS may require adding `Local Flow.app` to:
+Because this prototype uses global hotkeys and paste automation, macOS may require adding `ParaFlow.app` to:
 
 ```text
 System Settings -> Privacy & Security -> Accessibility
@@ -80,10 +82,10 @@ For a self-contained app bundle with the Python worker and Parakeet model embedd
 This creates:
 
 ```text
-dist/Local-Flow-0.1.0.dmg
+dist/ParaFlow-0.1.0.dmg
 ```
 
-Open the DMG, then drag `Local Flow.app` onto the `Applications` shortcut in the Finder window. Opening the DMG itself should not request permissions; macOS permission prompts start when `Local Flow.app` is launched.
+Open the DMG, then drag `ParaFlow.app` onto the `Applications` shortcut in the Finder window. Opening the DMG itself should not request permissions; macOS permission prompts start when `ParaFlow.app` is launched.
 
 The packaged app does not need the project folder, `.venv`, or `models/` folder next to it. On another Mac, the user will still need to grant:
 
