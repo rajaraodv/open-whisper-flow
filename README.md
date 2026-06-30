@@ -1,6 +1,8 @@
-# Local Wispr Flow Prototype
+# Open Whisper Flow
 
-Small macOS push-to-talk dictation prototype using a local Parakeet ASR model through `sherpa-onnx`.
+A small macOS push-to-talk dictation app — an open, fully local take on Wispr Flow. It transcribes your speech on-device with NVIDIA's Parakeet ASR model through `sherpa-onnx`; nothing is sent to the cloud.
+
+> The built macOS app is named **Local Flow**, and the Python package is `flow_clone` — these are the internal/product names used throughout the code.
 
 ## What Works
 
@@ -108,6 +110,14 @@ Mac App Store distribution is a different target: App Store macOS apps must use 
 
 ```bash
 .venv/bin/python -m flow_clone.transcribe path/to/audio.wav
+```
+
+## Tests
+
+The text-cleanup test suite uses the standard library `unittest` (no extra dependencies):
+
+```bash
+.venv/bin/python -m unittest discover -s tests
 ```
 
 ## Model
