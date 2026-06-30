@@ -1,0 +1,5 @@
+sherpa-onnx==1.13.2
+sounddevice==0.5.5
+numpy==2.4.6
+pynput==1.8.2
+pyperclip==1.11.0
